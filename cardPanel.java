@@ -32,6 +32,15 @@ public class cardPanel extends JPanel implements ActionListener {
 
 	}
 
+	// Function that creates the menu bar that will be used
+	// for navigation across all game screens
+	public JMenuBar buildMenuBar(){
+		JMenuBar menu = new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
+		JMenu windowMenu = new JMenu("Window");
+		
+	}
+
 	// Function to create the intro panel and then return 
 	// the created panel
 	public JPanel buildIntroPanel(Container container){
