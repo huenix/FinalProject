@@ -17,7 +17,7 @@ public class myJFrame extends JFrame
 		// instantiate the card panel object
 		// which will build the panel according
 		// to the instructions in the cardPanel constructor
-    	cp = new cardPanel();
+    	cp = new cardPanel(this);
 //------------------------------------------------------
 // Choose a Layout for JFrame and 
 // add Jpanel to JFrame according to layout    	

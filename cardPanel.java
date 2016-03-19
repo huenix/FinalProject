@@ -10,13 +10,15 @@ public class cardPanel extends JPanel implements ActionListener {
 	// This builds and adds the cards to
 	// the container, which is managed by the 
 	// CardLayout layout manager. 
-	public cardPanel(){
+	public cardPanel(JFrame f){
 
 		// Call the JPanel super constructor
 		super();
 
 		// Set the layout of the panel to CardLayout
 		this.setLayout(new CardLayout());
+
+		f.setJMenuBar(buildMenuBar());
 		
 		// Create and add intro screen panel
 		this.add(buildIntroPanel(this), "INTRO");
@@ -36,8 +38,36 @@ public class cardPanel extends JPanel implements ActionListener {
 	// for navigation across all game screens
 	public JMenuBar buildMenuBar(){
 		JMenuBar menu = new JMenuBar();
+		
 		JMenu fileMenu = new JMenu("File");
+		JMenuItem saveButton = new JMenuItem("Save..");
+		JMenuItem loadButton = new JMenuItem("Load..");
+		saveButton.addActionListener(this);
+		loadButton.addActionListener(this);
+		fileMenu.add(saveButton);
+		fileMenu.add(loadButton);
+
 		JMenu windowMenu = new JMenu("Window");
+		JMenuItem introButton = new JMenuItem("Intro Screen");
+		JMenuItem  instructionsButton = new JMenuItem("Instructions");
+		JMenuItem  designerButton = new JMenuItem("About");
+		JMenuItem  gameplayButton = new JMenuItem("Game Screen");
+	
+		introButton.addActionListener(this);
+		instructionsButton.addActionListener(this);
+		designerButton.addActionListener(this);
+		gameplayButton.addActionListener(this);
+
+		windowMenu.add(introButton);
+		windowMenu.add(instructionsButton);
+		windowMenu.add(designerButton);
+		windowMenu.add(gameplayButton);
+
+
+		menu.add(fileMenu);
+		menu.add(windowMenu);
+
+		return menu;
 		
 	}
 
@@ -58,56 +88,12 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Add label and button panel
 		panel.add(introLabel);
-		panel.add(mainButtonsPanel(this));
 
 		// Return the created panel
 		return panel;
 	}
 
-	// Function that creates a button panel to navigate through application
-	public JPanel mainButtonsPanel(Container container){
-
-		// Initialize the panel that will be returned 
-		JPanel buttons = new JPanel(new GridLayout(3,1));
-		
-		// Define the first button and it's action
-		// which is to navigate to the instructions panel
-		JButton b1 = new JButton("Read Instructions");
-		CardLayout cardLayout = (CardLayout) container.getLayout();
-		b1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cardLayout.show(container, "INSTRUCTIONS");
-			}
-		});
-
-		// Define the second button and it's action
-		// which is to navigate to the designer panel
-		JButton b2 = new JButton("About Designer");
-		b2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cardLayout.show(container, "DESIGNER");
-			}
-		});
-		
-		// Define the third button and it's action
-		// which is to navigate to the gameplay panel
-		JButton b3 = new JButton("Play Game");
-		b3.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				cardLayout.show(container, "GAMEPLAY");
-			}
-		});
-
-
-		// Add each button to the panel
-		buttons.add(b1);
-		buttons.add(b2);
-		buttons.add(b3);
-
-		// Return the panel
-		return buttons;
-	}
-
+	
 	// Function to create the Instructions panel
 	public JPanel buildInstructionsPanel(Container container){
 		// Create the panel to be returned
@@ -119,13 +105,7 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Create panel elements
 		JLabel instructionsLabel = new JLabel("INSTRUCTIONS SCREEN", JLabel.CENTER);
-		JButton homeButton = new JButton("GO HOME");
-
-		// Add home button action to home button
-		homeButton.addActionListener(this);
-
-		// Add elements to panel
-		panel.add(homeButton, "North");
+		
 		panel.add(instructionsLabel, "Center");
 		
 		// Return panel
@@ -143,14 +123,11 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Create panel elements
 		JLabel instructionsLabel = new JLabel("DESIGNER SCREEN", JLabel.CENTER);
-		JButton homeButton = new JButton("GO HOME");
-		
-		// Add home button action to home button
-		homeButton.addActionListener(this);
+
 
 		// Add elements to panel
 		panel.add(instructionsLabel, "Center");
-		panel.add(homeButton, "North");
+		
 		
 		// Return panel
 		return panel;
@@ -169,13 +146,7 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Create panel elements
 		JLabel instructionsLabel = new JLabel("GAMEPLAY SCREEN", JLabel.CENTER);
-		JButton homeButton = new JButton("GO HOME");
-
-		// Add home button action to home button
-		homeButton.addActionListener(this);
-
-		// Add elements to panel
-		panel.add(homeButton, "North");
+		
 		panel.add(instructionsLabel, "Center");
 
 		// Return panel
@@ -188,9 +159,23 @@ public class cardPanel extends JPanel implements ActionListener {
 	// implemented in the cardPanel class
 	public void actionPerformed(ActionEvent e){
 		// Get the cardLayout
-		CardLayout cardLayout = (CardLayout) this.getLayout();
-		// Show the intro panel
-		cardLayout.show(this, "INTRO");
+		if(e.getSource() instanceof JMenuItem){
+			CardLayout cardLayout = (CardLayout) this.getLayout();
+			String whichMenu = ((JMenuItem)e.getSource()).getText();
+			if(whichMenu.equals("Save..")){
+				System.out.println("SAVE CLICKED");
+			} else if (whichMenu.equals("Load..")){
+				System.out.println("LOAD CLICKED");
+			} else if (whichMenu.equals("Intro Screen")){
+				cardLayout.show(this, "INTRO");
+			} else if (whichMenu.equals("Instructions")){
+				cardLayout.show(this, "INSTRUCTIONS");
+			} else if (whichMenu.equals("About")){
+				cardLayout.show(this, "DESIGNER");
+			} else if (whichMenu.equals("Game Screen")){
+				cardLayout.show(this, "GAMEPLAY");
+			} 
+		}
 	}
 
 
