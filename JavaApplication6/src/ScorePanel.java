@@ -18,7 +18,7 @@ public class ScorePanel extends JPanel
         // No layouts yet. I will get to it. Maybe. Don't hold your breath
         setBackground(Color.yellow);
         
-        // Add in the text areas for stuff and things
+        // Add in the text areas for stuff and things 
         
         gameTitle = new JTextArea(5,20);
         profileName = new JTextArea(5,20);
