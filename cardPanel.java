@@ -136,21 +136,8 @@ public class cardPanel extends JPanel implements ActionListener {
 
 	// Function to build Gameplay panel 
 	public JPanel buildGamePanel(Container container){
-
-		// Create panel to be returned
-		JPanel panel = new JPanel();
-
-		// Set panel attributes
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(Color.orange);
-
-		// Create panel elements
-		JLabel instructionsLabel = new JLabel("GAMEPLAY SCREEN", JLabel.CENTER);
 		
-		panel.add(instructionsLabel, "Center");
-
-		// Return panel
-		return panel;
+		return new gameplayPanel();
 	}
 
 
