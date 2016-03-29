@@ -4,18 +4,17 @@
  * and open the template in the editor.
  */
  import java.awt.*;
- import java.awt.event.*;
  import javax.swing.*;
  /**
  *
  * @author scottu
  */
  
- public class ScorePanel extends JPanel implements KeyListener{
+ public class scorePanel extends JPanel {
      //Set up variables
     public JButton saveGame, loadGame, restart;
     JTextArea gameTitle, profileName, score, topScore, timeLeft;
-    public ScorePanel() {
+    public scorePanel() {
         // No layouts yet. I will get to it. Maybe. Don't hold your breath
         setBackground(Color.yellow);
         
@@ -33,8 +32,7 @@
         score.setEditable(false);
         topScore.setEditable(false);
         timeLeft.setEditable(false);
-        this.setFocusable(true);
-        this.addKeyListener(this);
+        
         
         
         // Three buttons for score, timer and to stop
@@ -61,21 +59,6 @@
        topScore.setText("User: " + name);
        
    }
-
-    /** Handle the key typed event from the text field. */
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    /** Handle the key-pressed event from the text field. */
-    public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
-    }
-
-    /** Handle the key-released event from the text field. */
-    public void keyReleased(KeyEvent e) {
-        
-    }
     
  
  }
