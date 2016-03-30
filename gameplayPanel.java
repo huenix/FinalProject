@@ -5,13 +5,13 @@ import javax.swing.event.*;
 
 public class gameplayPanel extends JPanel implements KeyListener{
 	
-	ScorePanel score_panel;
+	scorePanel score_panel;
 	ButtonPanel button_panel;
 
 	public gameplayPanel(){
 		super();
 		this.setLayout(new BorderLayout());
-		score_panel = new ScorePanel();
+		score_panel = new scorePanel();
 		button_panel = new ButtonPanel();
 		this.add(score_panel, "North");
 		this.add(button_panel, "Center");

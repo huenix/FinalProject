@@ -19,14 +19,16 @@ public class ButtonPanel extends JPanel implements KeyListener{
 		buttons = new ArrayList<>();
 		 this.setLayout(new GridLayout(ROWS, COLS, PAD, PAD));
 		 for(int x = ROWS*COLS; x > 0; x--){
-			JButton a = new JButton("HEY");
+			GamePiece a = new GamePiece();
 			a.addKeyListener(this);
 			a.setBorderPainted( false );
 			a.setFocusPainted( false );
+            a.setState((int) Math.floor(Math.random() * 4));
+            a.setOpaque(true);
 			buttons.add(a);
 			this.add(a);
 		 }
-		 this.setFocusable(true);
+		 //this.setFocusable(true);
 		 this.addKeyListener(this);
 	}
 
@@ -55,6 +57,8 @@ public class ButtonPanel extends JPanel implements KeyListener{
         		break;
         }
     }
+
+    
 
     /** Handle the key-released event from the text field. */
     public void keyReleased(KeyEvent e) {
