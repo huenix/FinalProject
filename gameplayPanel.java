@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class gameplayPanel extends JPanel implements KeyListener{
+public class gameplayPanel extends JPanel implements KeyListener, ActionListener{
 	
 	scorePanel score_panel;
 	ButtonPanel button_panel;
@@ -21,7 +21,13 @@ public class gameplayPanel extends JPanel implements KeyListener{
 		button_panel.addKeyListener(this);
 		score_panel.setFocusable(true);
 		score_panel.addKeyListener(this);
+		score_panel.resetButton.addActionListener(this);
+	}
 
+	public void actionPerformed(ActionEvent e){
+		if(e.getSource() == score_panel.resetButton){
+			button_panel.reset();
+		}
 	}
 
 	 /** Handle the key typed event from the text field. */

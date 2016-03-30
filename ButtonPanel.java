@@ -9,28 +9,34 @@ public class ButtonPanel extends JPanel implements KeyListener{
 	private final int ROWS = 4;
 	private final int COLS = 4;
 	private final int PAD = 3;
-	ArrayList<JButton> buttons;
+	ArrayList<GamePiece> buttons;
 	private int score;
 	
 
 	public ButtonPanel()
 	{	
 		super();
+        this.score = 0;
 		buttons = new ArrayList<>();
 		 this.setLayout(new GridLayout(ROWS, COLS, PAD, PAD));
 		 for(int x = ROWS*COLS; x > 0; x--){
 			GamePiece a = new GamePiece();
 			a.addKeyListener(this);
-			a.setBorderPainted( false );
-			a.setFocusPainted( false );
-            a.setState((int) Math.floor(Math.random() * 4));
-            a.setOpaque(true);
 			buttons.add(a);
 			this.add(a);
 		 }
-		 //this.setFocusable(true);
+	    buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
 		 this.addKeyListener(this);
+         this.printGrid();
 	}
+
+    public void reset(){
+        for(GamePiece g : buttons){
+            g.setState(0);
+        }
+        buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
+        this.score = 0;
+    }
 
 	 /** Handle the key typed event from the text field. */
     public void keyTyped(KeyEvent e) {
@@ -58,7 +64,16 @@ public class ButtonPanel extends JPanel implements KeyListener{
         }
     }
 
-    
+    public void printGrid(){
+        for(int a = 0; a < ROWS; a++){
+            for(int b = 1; b <= COLS; b++){
+                int index = a * COLS + b - 1;
+                System.out.print("" + buttons.get(index).getText());
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
 
     /** Handle the key-released event from the text field. */
     public void keyReleased(KeyEvent e) {

@@ -12,9 +12,13 @@ public class GamePiece extends JButton{
 	public GamePiece(){
 		super();
 
-		currState = 0;
+		setState(0);
 		value = 0;
 		setText("" + value);
+
+		setBorderPainted( false );
+		setFocusPainted( false );
+		setOpaque(true);
 	}
 
 	public GamePiece(int currState){
@@ -71,7 +75,9 @@ public class GamePiece extends JButton{
 			case 12:
 				break;
 		}
+		this.currState = currState;
 		this.setText("" + currState);
+		this.value = (int) Math.pow(2, currState);
 	}
 
 	public int getState(){
