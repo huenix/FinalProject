@@ -238,10 +238,19 @@ public class ButtonPanel extends JPanel implements KeyListener{
     public void addRandomTile(){
         int two_or_four = (int) Math.floor(Math.random() * 2) + 1;
         int randomIndex = 0;
+        int count = 0;
         while(randomIndex != -1){
             randomIndex = (int) Math.floor(Math.random() * ROWS * COLS);
             if(isBlankSpace(randomIndex)){
                 buttons.get(randomIndex).setState(two_or_four);
+                randomIndex = -1;
+            }
+
+            if(count < ROWS * COLS){
+                count++;
+            }
+            else{
+                reset();
                 randomIndex = -1;
             }
 
