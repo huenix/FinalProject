@@ -28,14 +28,6 @@ public class GamePiece extends JButton{
 		setText("" + value);
 	}
 
-	public String toString(){
-		return "" + currState;
-	}
-
-	public boolean sameState(GamePiece other) {
-	    return this.currState == other.currState;
-	}
-
 	public void setImage(int currState){
 
 	}
@@ -76,8 +68,8 @@ public class GamePiece extends JButton{
 				break;
 		}
 		this.currState = currState;
-		this.setText("" + currState);
 		this.value = (int) Math.pow(2, currState);
+		this.setText("" + value);
 	}
 
 	public int getState(){
