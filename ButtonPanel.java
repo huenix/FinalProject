@@ -8,7 +8,7 @@ public class ButtonPanel extends JPanel implements KeyListener{
 	
 	private final int ROWS = 4;
 	private final int COLS = 4;
-	private final int PAD = 3;
+	private final int PAD = 5;
 
     private final int NORTH = 0;
     private final int WEST = 1;
