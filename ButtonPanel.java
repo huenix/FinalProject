@@ -4,10 +4,10 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.ArrayList;
 
-public class ButtonPanel extends JPanel implements KeyListener{
+public class ButtonPanel extends JPanel {//implements KeyListener{
 	
 	private final int ROWS = 10;
-	private final int COLS = 1
+	private final int COLS = 10;
 	private final int PAD = 3;
 
 	private final int NORTH = 0;
@@ -15,7 +15,7 @@ public class ButtonPanel extends JPanel implements KeyListener{
 	private final int EAST = 2;
 	private final int SOUTH = 3;
 
-	ArrayList<GamePiece> buttons;
+	public ArrayList<GamePiece> buttons;
 	private int score;
 	
 
@@ -27,7 +27,7 @@ public class ButtonPanel extends JPanel implements KeyListener{
 		this.setLayout(new GridLayout(ROWS, COLS, PAD, PAD));
 		for(int x = 0; x < ROWS* COLS; x++){
 			GamePiece a = new GamePiece();
-			a.addKeyListener(this);
+			//a.addKeyListener(this);
 			a.setText("" + x);
 			buttons.add(a);
 			this.add(a);
@@ -37,7 +37,6 @@ public class ButtonPanel extends JPanel implements KeyListener{
 		}
 		addTestButtons();
 		//buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
-		this.addKeyListener(this);
 	}
 
 	public void reset(){
@@ -92,35 +91,6 @@ public class ButtonPanel extends JPanel implements KeyListener{
 		}
 
 		return neighbors;
-	}
-
-	/** Handle the key typed event from the text field. */
-
-	public void keyTyped(KeyEvent e) {
-	}
-
-	public void keyPressed(KeyEvent e) {
-		switch(e.getKeyCode()){
-			case KeyEvent.VK_UP:
-			actuateUp();
-			addRandomTile();
-			break;
-			case KeyEvent.VK_DOWN:
-			actuateDown();
-			addRandomTile();
-			break;
-			case KeyEvent.VK_LEFT:
-			actuateLeft();
-			addRandomTile();
-			break;
-			case KeyEvent.VK_RIGHT:
-			actuateRight();
-			addRandomTile();
-			break;
-			default:
-			System.out.println("Not supported Key");
-			break;
-		}
 	}
 
 	public void actuateUp(){
@@ -221,20 +191,6 @@ public class ButtonPanel extends JPanel implements KeyListener{
 		return (buttons.get(buttonIndex).getState() == 0);
 	}
 
-	public void printGrid(){
-		for(int a = 0; a < ROWS; a++){
-			for(int b = 1; b <= COLS; b++){
-				int index = a * COLS + b - 1;
-				System.out.print("" + buttons.get(index).getText());
-			}
-			System.out.println("");
-		}
-		System.out.println("");
-	}
-
-	public void keyReleased(KeyEvent e) {        
-	}
-
 	public void addRandomTile(){
 		int two_or_four = (int) Math.floor(Math.random() * 2) + 1;
 		int randomIndex = 0;
@@ -254,19 +210,6 @@ public class ButtonPanel extends JPanel implements KeyListener{
 				randomIndex = -1;
 			}
 
-		}
-	}
-
-	public void actuate(String phrase){
-		for(JButton b : buttons){
-			if(phrase.equals("UP"))
-				b.setBackground(Color.white);
-			else if(phrase.equals("DOWN"))
-				b.setBackground(Color.black);
-			else if(phrase.equals("LEFT"))
-				b.setBackground(Color.green);
-			else if(phrase.equals("RIGHT"))
-				b.setBackground(Color.blue);
 		}
 	}
 }

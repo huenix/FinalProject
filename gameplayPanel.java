@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class gameplayPanel extends JPanel implements KeyListener, ActionListener{
+public class gameplayPanel extends JPanel implements KeyListener, ActionListener {
 	
 	scorePanel score_panel;
 	ButtonPanel button_panel;
@@ -22,6 +22,10 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
 		score_panel.setFocusable(true);
 		score_panel.addKeyListener(this);
 		score_panel.resetButton.addActionListener(this);
+
+		for(GamePiece g : button_panel.buttons){
+			g.addKeyListener(this);
+		}
 	}
 
 	public void actionPerformed(ActionEvent e){
@@ -37,7 +41,27 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
 
     /** Handle the key-pressed event from the text field. */
     public void keyPressed(KeyEvent e) {
-        System.out.println(e.getKeyCode());
+	    switch(e.getKeyCode()){
+			case KeyEvent.VK_UP:
+			button_panel.actuateUp();
+			button_panel.addRandomTile();
+			break;
+			case KeyEvent.VK_DOWN:
+			button_panel.actuateDown();
+			button_panel.addRandomTile();
+			break;
+			case KeyEvent.VK_LEFT:
+			button_panel.actuateLeft();
+			button_panel.addRandomTile();
+			break;
+			case KeyEvent.VK_RIGHT:
+			button_panel.actuateRight();
+			button_panel.addRandomTile();
+			break;
+			default:
+			System.out.println("Not supported Key");
+			break;
+		}
     }
 
     /** Handle the key-released event from the text field. */
