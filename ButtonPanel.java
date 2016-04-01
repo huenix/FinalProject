@@ -3,11 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class ButtonPanel extends JPanel {//implements KeyListener{
 	
-	private final int ROWS = 10;
-	private final int COLS = 10;
+	private final int ROWS = 4;
+	private final int COLS = 4;
 	private final int PAD = 3;
 
 	private final int NORTH = 0;
@@ -212,4 +213,31 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 
 		}
 	}
+        public String getGameBoard()
+        {
+            //Going through the ArrayList and creating a 16 character string to account for 
+            //each of the values of the board pieces, and writing it to an XML file
+            StringBuilder StrBld = new StringBuilder();
+            String gameBoard;
+            for (GamePiece g : buttons)   
+            StrBld.append(g.getState());
+            gameBoard = StrBld.toString();
+            return gameBoard;
+                
+        }
+
+        public void setGameBoard(String gb)
+        {
+           //Grab the 16 character string from the XML file, for each character
+           //convert to numeric value to assign to buttons ArrayList state.
+            int chnum;
+            for(int i = 0; i < gb.length(); i++){
+                char ch = gb.charAt(i);             
+                chnum = Character.getNumericValue(ch);
+                System.out.println(chnum);
+                buttons.get(i).setState(chnum);
+                
+            }
+            
+        }
 }

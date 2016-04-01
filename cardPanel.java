@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class cardPanel extends JPanel implements ActionListener {
 	
@@ -136,11 +137,11 @@ public class cardPanel extends JPanel implements ActionListener {
 
 	// Function to build Gameplay panel 
 	public JPanel buildGamePanel(Container container){
-		
-		return new gameplayPanel();
+
+            return gp;
 	}
 
-
+		gameplayPanel gp = new gameplayPanel();
 	// Function that gets called when home buttons are clicked
 	// realized throught the ActionListener interface
 	// implemented in the cardPanel class
@@ -151,9 +152,25 @@ public class cardPanel extends JPanel implements ActionListener {
 			String whichMenu = ((JMenuItem)e.getSource()).getText();
 			if(whichMenu.equals("Save..")){
 				System.out.println("SAVE CLICKED");
+                                XML_240 x = new XML_240();
+                                x.openWriterXML("saveData.xml");
+                                x.writeObject(gp.score_panel.score);
+                                x.closeWriterXML();
+                                x.openWriterXML("gameBoard.xml");
+                                x.writeObject(gp.button_panel.getGameBoard());
+                                System.out.println(gp.button_panel.getGameBoard());
+                                x.closeWriterXML();
 			} else if (whichMenu.equals("Load..")){
 				System.out.println("LOAD CLICKED");
-			} else if (whichMenu.equals("Intro Screen")){
+                                XML_240 x = new XML_240();
+                                x.openReaderXML("saveData.xml");
+                                int s = (int) x.ReadObject();
+                                x.closeReaderXML();
+                                x.openReaderXML("gameBoard.xml");
+                                String b = (String) x.ReadObject();
+                                gp.button_panel.setGameBoard(b);
+                                x.closeReaderXML();
+                        } else if (whichMenu.equals("Intro Screen")){
 				cardLayout.show(this, "INTRO");
 			} else if (whichMenu.equals("Instructions")){
 				cardLayout.show(this, "INSTRUCTIONS");
