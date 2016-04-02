@@ -219,8 +219,14 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
             //each of the values of the board pieces, and writing it to an XML file
             StringBuilder StrBld = new StringBuilder();
             String gameBoard;
-            for (GamePiece g : buttons)   
-            StrBld.append(g.getState());
+            for (GamePiece g : buttons){
+                if(g.getState()== 10)
+                    StrBld.append("A");
+                else if(g.getState()==11)
+                    StrBld.append("B");
+                else
+                    StrBld.append(g.getState());
+            }
             gameBoard = StrBld.toString();
             return gameBoard;
                 
@@ -231,8 +237,15 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
            //Grab the 16 character string from the XML file, for each character
            //convert to numeric value to assign to buttons ArrayList state.
             int chnum;
+            char a = 'a';
+            char b = 'b';
             for(int i = 0; i < gb.length(); i++){
-                char ch = gb.charAt(i);             
+                char ch = gb.charAt(i);
+                if(ch == a)
+                    chnum = 10;
+                else if(ch == b)
+                     chnum = 11;
+                else
                 chnum = Character.getNumericValue(ch);
                 System.out.println(chnum);
                 buttons.get(i).setState(chnum);
