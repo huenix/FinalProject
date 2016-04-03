@@ -97,41 +97,12 @@ public class cardPanel extends JPanel implements ActionListener {
 	
 	// Function to create the Instructions panel
 	public JPanel buildInstructionsPanel(Container container){
-		// Create the panel to be returned
-		JPanel panel = new JPanel();
-
-		// Set panel attributes
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(Color.yellow);
-
-		// Create panel elements
-		JLabel instructionsLabel = new JLabel("INSTRUCTIONS SCREEN", JLabel.CENTER);
-		
-		panel.add(instructionsLabel, "Center");
-		
-		// Return panel
-		return panel;
+		return new instructionsPanel();
 	}
 
 	// Function to create the Designer panel
 	public JPanel buildDesignerPanel(Container container){
-		// Create the panel to be returned
-		JPanel panel = new JPanel();
-
-		// Set panel attributes
-		panel.setLayout(new BorderLayout());
-		panel.setBackground(Color.blue);
-
-		// Create panel elements
-		JLabel instructionsLabel = new JLabel("DESIGNER SCREEN", JLabel.CENTER);
-
-
-		// Add elements to panel
-		panel.add(instructionsLabel, "Center");
-		
-		
-		// Return panel
-		return panel;
+		return new designerPanel();
 	}
 	
 
