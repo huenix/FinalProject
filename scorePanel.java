@@ -17,6 +17,8 @@ public class scorePanel extends JPanel {
 	// Constructor that configures scorePanel
 	public scorePanel(){	
 
+		this.setBackground(new Color(19, 84, 184));
+
 		// Instantiate new variables
 		score = 0;
 		scoreLabel = new JLabel("Score: " + score);

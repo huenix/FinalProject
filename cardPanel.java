@@ -75,7 +75,12 @@ public class cardPanel extends JPanel implements ActionListener {
 	// Function to create the intro panel and then return 
 	// the created panel
 	public JPanel buildIntroPanel(Container container){
-		return new introPanel();
+		introPanel panel = new introPanel();
+		panel.playButton.addActionListener(this);
+		panel.instructionsButton.addActionListener(this);
+		panel.hiscoresButton.addActionListener(this);
+		panel.designersButton.addActionListener(this);
+		return panel;
 	}
 
 	
@@ -106,7 +111,6 @@ public class cardPanel extends JPanel implements ActionListener {
 			CardLayout cardLayout = (CardLayout) this.getLayout();
 			String whichMenu = ((JMenuItem)e.getSource()).getText();
 			if(whichMenu.equals("Save..")){
-				System.out.println("SAVE CLICKED");
                                 XML_240 x = new XML_240();
                                 x.openWriterXML("saveData.xml");
                                 x.writeObject(gp.score_panel.score);
@@ -116,7 +120,6 @@ public class cardPanel extends JPanel implements ActionListener {
                                 System.out.println(gp.button_panel.getGameBoard());
                                 x.closeWriterXML();
 			} else if (whichMenu.equals("Load..")){
-				System.out.println("LOAD CLICKED");
                                 XML_240 x = new XML_240();
                                 x.openReaderXML("saveData.xml");
                                 int s = (int) x.ReadObject();
@@ -134,6 +137,22 @@ public class cardPanel extends JPanel implements ActionListener {
 			} else if (whichMenu.equals("Game Screen")){
 				cardLayout.show(this, "GAMEPLAY");
 			} 
+		}
+		else if (e.getSource() instanceof JButton){
+			JButton a = (JButton) e.getSource();
+			CardLayout cardLayout = (CardLayout) this.getLayout();
+			if(a.getText().equals("Play Game")){
+				cardLayout.show(this, "GAMEPLAY");	
+			}
+			else if(a.getText().equals("Instructions")){
+				cardLayout.show(this, "INSTRUCTIONS");	
+			}
+			else if(a.getText().equals("Game Designers")){
+				cardLayout.show(this, "DESIGNER");	
+			}
+			else if(a.getText().equals("Hi - Scores")){
+				cardLayout.show(this, "SCORES");	
+			}
 		}
 	}
 
