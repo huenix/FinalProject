@@ -31,6 +31,7 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e){
 		if(e.getSource() == score_panel.resetButton){
 			button_panel.reset();
+			score_panel.setScore(0);
 		}
 	}
 
@@ -43,20 +44,24 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
     public void keyPressed(KeyEvent e) {
 	    switch(e.getKeyCode()){
 			case KeyEvent.VK_UP:
-			button_panel.actuateUp();
-			button_panel.addRandomTile();
+			if(button_panel.actuateUp())
+				button_panel.addRandomTile();
+			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_DOWN:
-			button_panel.actuateDown();
-			button_panel.addRandomTile();
+			if(button_panel.actuateDown())
+				button_panel.addRandomTile();
+			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_LEFT:
-			button_panel.actuateLeft();
-			button_panel.addRandomTile();
+			if(button_panel.actuateLeft())
+				button_panel.addRandomTile();
+			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_RIGHT:
-			button_panel.actuateRight();
-			button_panel.addRandomTile();
+			if(button_panel.actuateRight())
+				button_panel.addRandomTile();
+			score_panel.setScore(button_panel.score);
 			break;
 			default:
 			System.out.println("Not supported Key");

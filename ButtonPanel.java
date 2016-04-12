@@ -17,7 +17,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 	private final int SOUTH = 3;
 
 	public ArrayList<GamePiece> buttons;
-	private int score;
+	int score;
 	
 
 	public ButtonPanel()
@@ -34,10 +34,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			buttons.add(a);
 			this.add(a);
 		}
-		for(int y = 0; y < ROWS*COLS; y++){
-			this.getNeighbors(y);
-		}
-		addTestButtons();
+		reset();
 		//buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
 	}
 
@@ -47,6 +44,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 		//buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
 		this.score = 0;
+		addRandomTile();
+		addRandomTile();
 	}
 
 	public int [] getNeighbors(int buttonIndex){
@@ -95,7 +94,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		return neighbors;
 	}
 
-	public void actuateUp(){
+	public boolean actuateUp(){
+		boolean goOn = false;
 		for(int c = 0; c < COLS; c++){
 			for(int r = 0; r < ROWS; r++){
 				int thisIndex = r*COLS + c;
@@ -105,6 +105,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				while(isBlankSpace(myNeighbors[NORTH])){
 					thisIndex -= COLS;
 					myNeighbors = getNeighbors(thisIndex);
+					goOn = true;
 				}
 				//myNeighbors = getNeighbors(thisIndex);
 				buttons.get(thisIndex).setState(thisState);
@@ -112,13 +113,19 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				if(myNeighbors[NORTH] != -1 && buttons.get(myNeighbors[NORTH]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[NORTH]).setState(thisState+1);
+					if(thisState+1 >= 2){
+						this.score += (int) Math.pow(2, thisState+1);
+					}
+					goOn = true;
 				}
 
 			}
 		}
+		return goOn;
 	}
 
-	public void actuateDown(){
+	public boolean actuateDown(){
+		boolean goOn = false;
 		for(int c = 0; c < COLS; c++){
 			for(int r = ROWS-1; r >= 0; r--){
 				int thisIndex = r*COLS + c;
@@ -128,18 +135,25 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				while(isBlankSpace(myNeighbors[SOUTH])){
 					thisIndex += COLS;
 					myNeighbors = getNeighbors(thisIndex);
+					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
 				if(myNeighbors[SOUTH] != -1 && buttons.get(myNeighbors[SOUTH]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[SOUTH]).setState(thisState+1);
+					if(thisState+1 >= 2){
+						this.score += (int) Math.pow(2, thisState+1);
+					}
+					goOn = true;
 				}
 			}
 		}
+		return goOn;
 	}
 
 
-	public void actuateRight(){
+	public boolean actuateRight(){
+		boolean goOn = false;
 		for(int r = 0; r < ROWS; r++){
 			for(int c = ROWS-1; c >= 0; c--){
 				int thisIndex = r*COLS + c;
@@ -149,17 +163,24 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				while(isBlankSpace(myNeighbors[EAST])){
 					thisIndex += 1;
 					myNeighbors = getNeighbors(thisIndex);
+					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
 				if(myNeighbors[EAST] != -1 && buttons.get(myNeighbors[EAST]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[EAST]).setState(thisState+1);
+					if(thisState+1 >= 2){
+						this.score += (int) Math.pow(2, thisState+1);
+					}
+					goOn = true;
 				}
 			}
 		}
+		return goOn;
 	}
 
-	public void actuateLeft(){
+	public boolean actuateLeft(){
+		boolean goOn = false;
 		for(int r = 0; r < ROWS; r++){
 			for(int c = 0; c < COLS; c++){
 				int thisIndex = r*COLS + c;
@@ -169,22 +190,22 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				while(isBlankSpace(myNeighbors[WEST])){
 					thisIndex -= 1;
 					myNeighbors = getNeighbors(thisIndex);
+					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
 				if(myNeighbors[WEST] != -1 && buttons.get(myNeighbors[WEST]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[WEST]).setState(thisState+1);
+					if(thisState+1 >= 2){
+						this.score += (int) Math.pow(2, thisState+1);
+					}
+					goOn = true;
 				}
 			}
 		}
+		return goOn;
 	}
 
-	public void addTestButtons(){
-		reset();
-		buttons.get(5).setState(1);
-		buttons.get(10).setState(2);
-		buttons.get(13).setState(1);
-	}
 
 	public boolean isBlankSpace(int buttonIndex){
 		if(buttonIndex < 0 || buttonIndex > buttons.size()-1)
