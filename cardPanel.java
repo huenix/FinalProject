@@ -75,23 +75,7 @@ public class cardPanel extends JPanel implements ActionListener {
 	// Function to create the intro panel and then return 
 	// the created panel
 	public JPanel buildIntroPanel(Container container){
-
-		// Initialize the panel to be returned
-		JPanel panel = new JPanel();
-
-		// Initialize descriptive Label
-		JLabel introLabel = new JLabel("WELCOME TO MY GAME", JLabel.CENTER);
-
-
-		// Set panel attributes here
-		panel.setLayout(new GridLayout(0,1));
-		panel.setBackground(Color.green);
-
-		// Add label and button panel
-		panel.add(introLabel);
-
-		// Return the created panel
-		return panel;
+		return new introPanel();
 	}
 
 	

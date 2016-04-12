@@ -24,6 +24,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 	{   
 		super();
 		this.score = 0;
+		this.setBackground(Color.orange);
 		buttons = new ArrayList<>();
 		this.setLayout(new GridLayout(ROWS, COLS, PAD, PAD));
 		for(int x = 0; x < ROWS* COLS; x++){
