@@ -11,7 +11,7 @@ public class myJFrame extends JFrame
 	{
 		// Call the super constructor JFrame
 		// to instantiate the window
-		super ("Assignment 08");
+		super ("IST 240 - Team 6");
 //------------------------------------------------------
 // Create components
 		// instantiate the card panel object
