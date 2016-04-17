@@ -15,7 +15,6 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Call the JPanel super constructor
 		super();
-
 		// Set the layout of the panel to CardLayout
 		this.setLayout(new CardLayout());
 
@@ -32,6 +31,9 @@ public class cardPanel extends JPanel implements ActionListener {
 
 		// Create and add main gameplay panel
 		this.add(buildGamePanel(this), "GAMEPLAY");
+                
+                // Create and add Hi Scores panel
+                this.add(buildHiScoresPanel(this),"SCORES");
 
 	}
 
@@ -52,18 +54,20 @@ public class cardPanel extends JPanel implements ActionListener {
 		JMenuItem introButton = new JMenuItem("Intro Screen");
 		JMenuItem  instructionsButton = new JMenuItem("Instructions");
 		JMenuItem  designerButton = new JMenuItem("About");
+                JMenuItem  hiScoresButton = new JMenuItem("Hi Scores");
 		JMenuItem  gameplayButton = new JMenuItem("Game Screen");
 	
 		introButton.addActionListener(this);
 		instructionsButton.addActionListener(this);
 		designerButton.addActionListener(this);
+                hiScoresButton.addActionListener(this);
 		gameplayButton.addActionListener(this);
 
 		windowMenu.add(introButton);
 		windowMenu.add(instructionsButton);
 		windowMenu.add(designerButton);
 		windowMenu.add(gameplayButton);
-
+                windowMenu.add(hiScoresButton);
 
 		menu.add(fileMenu);
 		menu.add(windowMenu);
@@ -100,6 +104,12 @@ public class cardPanel extends JPanel implements ActionListener {
 
             return gp;
 	}
+        //Function to build hi scores panel
+        public JPanel buildHiScoresPanel(Container container){
+            return new hiScoresPanel();
+        }
+        
+        //Builds hi score list and orders appropriately
 
 		gameplayPanel gp = new gameplayPanel();
 	// Function that gets called when home buttons are clicked
@@ -111,23 +121,23 @@ public class cardPanel extends JPanel implements ActionListener {
 			CardLayout cardLayout = (CardLayout) this.getLayout();
 			String whichMenu = ((JMenuItem)e.getSource()).getText();
 			if(whichMenu.equals("Save..")){
-                                XML_240 x = new XML_240();
-                                x.openWriterXML("saveData.xml");
-                                x.writeObject(gp.score_panel.score);
-                                x.closeWriterXML();
-                                x.openWriterXML("gameBoard.xml");
-                                x.writeObject(gp.button_panel.getGameBoard());
-                                System.out.println(gp.button_panel.getGameBoard());
-                                x.closeWriterXML();
+                                xmlProcess close = new xmlProcess();
+                                
+                                close.xmlClose(gp.score_panel.getScore(),gp.button_panel.getGameBoard());
+                                //XML_240 x = new XML_240();
+                                //x.openWriterXML("gameBoard.xml");                      
+                                //x.writeObject(gp.score_panel.getScore());
+                                //x.writeObject(gp.button_panel.getGameBoard());
+                                //x.closeWriterXML();
 			} else if (whichMenu.equals("Load..")){
                                 XML_240 x = new XML_240();
-                                x.openReaderXML("saveData.xml");
-                                int s = (int) x.ReadObject();
-                                x.closeReaderXML();
                                 x.openReaderXML("gameBoard.xml");
+                                int s = (int) x.ReadObject();
+                                gp.score_panel.setScore(s);
                                 String b = (String) x.ReadObject();
                                 gp.button_panel.setGameBoard(b);
                                 x.closeReaderXML();
+                                
                         } else if (whichMenu.equals("Intro Screen")){
 				cardLayout.show(this, "INTRO");
 			} else if (whichMenu.equals("Instructions")){
@@ -136,7 +146,9 @@ public class cardPanel extends JPanel implements ActionListener {
 				cardLayout.show(this, "DESIGNER");
 			} else if (whichMenu.equals("Game Screen")){
 				cardLayout.show(this, "GAMEPLAY");
-			} 
+			} else if (whichMenu.equals("Hi Scores")){
+                                cardLayout.show(this, "SCORES");
+                        }
 		}
 		else if (e.getSource() instanceof JButton){
 			JButton a = (JButton) e.getSource();
@@ -150,7 +162,7 @@ public class cardPanel extends JPanel implements ActionListener {
 			else if(a.getText().equals("Game Designers")){
 				cardLayout.show(this, "DESIGNER");	
 			}
-			else if(a.getText().equals("Hi - Scores")){
+			else if(a.getText().equals("Hi Scores")){
 				cardLayout.show(this, "SCORES");	
 			}
 		}

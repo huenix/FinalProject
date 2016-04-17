@@ -259,8 +259,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
            //Grab the 16 character string from the XML file, for each character
            //convert to numeric value to assign to buttons ArrayList state.
             int chnum;
-            char a = 'a';
-            char b = 'b';
+            char a = 'A';
+            char b = 'B';
             for(int i = 0; i < gb.length(); i++){
                 char ch = gb.charAt(i);
                 if(ch == a)
@@ -273,6 +273,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
                 buttons.get(i).setState(chnum);
                 
             }
-            
         }
-}
+
+            
+            }
+
