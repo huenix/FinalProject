@@ -174,6 +174,9 @@ public class cardPanel extends JPanel implements ActionListener {
 			if(a.getText().equals("Play Game")){
 				cardLayout.show(this, "GAMEPLAY");	
 			}
+			else if(a.getText().equals("START HERE")){
+				cardLayout.show(this, "SETTINGS");	
+			}
 			else if(a.getText().equals("Instructions")){
 				cardLayout.show(this, "INSTRUCTIONS");	
 			}

@@ -19,7 +19,7 @@ public class introPanel extends JPanel {
 		titleLabel = new JLabel("IST GAME NAME");
 		titleLabel.setFont(new Font("Arial", Font.BOLD,48));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		playButton = new JButton("Play Game");
+		playButton = new JButton("START HERE");
 		instructionsButton = new JButton("Instructions");
 		hiscoresButton = new JButton("Hi Scores");
 		designersButton = new JButton("Game Designers");

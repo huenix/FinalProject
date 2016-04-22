@@ -17,6 +17,10 @@ public class GamePiece extends JButton{
 		setState(0);
 		value = 0;
 		setText("" + value);
+		this.setHorizontalTextPosition(JButton.CENTER);
+		this.setVerticalTextPosition(JButton.CENTER);
+		this.setForeground(Color.RED);
+		this.setFont(new Font("Arial", Font.BOLD, 40));
 
 		setBorderPainted( false );
 		setFocusPainted( false );
@@ -42,9 +46,9 @@ public class GamePiece extends JButton{
 	public void setState(int currState){
 		this.currState = currState;
 		this.value = (int) Math.pow(2, currState);
-		//this.setText("" + value);
-		int bWidth = 160;
-		int bHeight = 75;
+		this.setText("" + value);
+		int bWidth = 157;
+		int bHeight = 85;
 		if(this.getWidth() * this.getHeight() > 0){
 			bWidth = this.getWidth();
 			bHeight = this.getHeight();
