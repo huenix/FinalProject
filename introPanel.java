@@ -21,7 +21,7 @@ public class introPanel extends JPanel {
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		playButton = new JButton("Play Game");
 		instructionsButton = new JButton("Instructions");
-		hiscoresButton = new JButton("Hi - Scores");
+		hiscoresButton = new JButton("Hi Scores");
 		designersButton = new JButton("Game Designers");
 
 		this.add(titleLabel);

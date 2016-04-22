@@ -114,7 +114,7 @@ public class GamePiece extends JButton{
 				this.setIcon(new ImageIcon(img));
 				break;
 			case 10:
-				a = new ImageIcon(getClass().getClassLoader().getResource("pics/weare1.jpg"));
+				a = new ImageIcon(getClass().getClassLoader().getResource("pics/weare1.png"));
 				this.setBackground(new Color(153, 51, 255));
 				img = a.getImage().getScaledInstance( bWidth, bHeight, java.awt.Image.SCALE_SMOOTH );
 				this.setIcon(new ImageIcon(img));

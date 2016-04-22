@@ -1,4 +1,3 @@
-package app;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -80,7 +79,7 @@ public class settingsPanel extends JPanel implements ChangeListener
         
         
         
-        settingsButton = new JButton("Save Settings");
+        settingsButton = new JButton("Play Game");
         add(settingsButton);
         
 
