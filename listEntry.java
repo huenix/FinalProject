@@ -9,9 +9,11 @@ import java.util.Comparator;
 public class listEntry {
     public int score;
     public String gameBoard;
+    public String name;
     
-    public listEntry(int s, String gb)
+    public listEntry(String n, int s, String gb)
     {
+        name = n;
         score = s;
         gameBoard = gb;
     }

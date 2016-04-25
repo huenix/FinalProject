@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class cardPanel extends JPanel implements ActionListener {
 	
 	public gameplayPanel gp;
+        public settingsPanel s;
+
 	// Constructor for card panel 
 	// This builds and adds the cards to
 	// the container, which is managed by the 
@@ -36,10 +38,11 @@ public class cardPanel extends JPanel implements ActionListener {
 		this.add(gp, "GAMEPLAY");
 
         // Create and add Hi Scores panel
-		this.add(buildHiScoresPanel(this),"SCORES");
+                this.add(buildHiScoresPanel(this),"SCORES");
 
         // Create and add settings Panel
-		this.add(buildSettingsPanel(),"SETTINGS");
+                s = (settingsPanel)buildSettingsPanel();
+		this.add(s,"SETTINGS");
 
 	}
 
@@ -120,9 +123,9 @@ public class cardPanel extends JPanel implements ActionListener {
 	}
 
 	public JPanel buildSettingsPanel(){
-		settingsPanel s = new settingsPanel();
-		s.settingsButton.addActionListener(this);
-		return s;
+		
+		return new settingsPanel();
+		
 	}
 
         //Builds hi score list and orders appropriately
@@ -138,21 +141,15 @@ public class cardPanel extends JPanel implements ActionListener {
 			String whichMenu = ((JMenuItem)e.getSource()).getText();
 			if(whichMenu.equals("Save..")){
 				xmlProcess close = new xmlProcess();
-
-				close.xmlClose(gp.score_panel.getScore(),gp.button_panel.getGameBoard());
-                                //XML_240 x = new XML_240();
-                                //x.openWriterXML("gameBoard.xml");                      
-                                //x.writeObject(gp.score_panel.getScore());
-                                //x.writeObject(gp.button_panel.getGameBoard());
-                                //x.closeWriterXML();
+				close.xmlClose(s.getName(),gp.score_panel.getScore(),gp.button_panel.getGameBoard());
+                                
 			} else if (whichMenu.equals("Load..")){
-				XML_240 x = new XML_240();
-				x.openReaderXML("gameBoard.xml");
-				int s = (int) x.ReadObject();
+                                xmlProcess load = new xmlProcess();
+                                load.xmlLoad(s.getName());
+				int s = load.score;
 				gp.score_panel.setScore(s);
-				String b = (String) x.ReadObject();
+				String b = load.gameBoard;
 				gp.button_panel.setGameBoard(b);
-				x.closeReaderXML();
 
 			} else if (whichMenu.equals("Intro Screen")){
 				cardLayout.show(this, "INTRO");
@@ -163,7 +160,8 @@ public class cardPanel extends JPanel implements ActionListener {
 			} else if (whichMenu.equals("Game Screen")){
 				cardLayout.show(this, "GAMEPLAY");
 			} else if (whichMenu.equals("Hi Scores")){
-				cardLayout.show(this, "SCORES");
+                                this.add(buildHiScoresPanel(this),"SCORES");
+                            	cardLayout.show(this, "SCORES");
 			} else if (whichMenu.equals("Settings")){
 				cardLayout.show(this, "SETTINGS");
 			}
@@ -184,6 +182,7 @@ public class cardPanel extends JPanel implements ActionListener {
 				cardLayout.show(this, "DESIGNER");	
 			}
 			else if(a.getText().equals("Hi Scores")){
+                            this.add(buildHiScoresPanel(this),"SCORES");
 				cardLayout.show(this, "SCORES");	
 			}
 		}

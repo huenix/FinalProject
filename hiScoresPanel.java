@@ -23,7 +23,6 @@ public class hiScoresPanel extends JPanel
             super();
             setBackground(Color.BLUE);
             setLayout(null);
-
             JLabel title = new JLabel("Hi Score List");
             title.setFont(new Font("Arial", Font.BOLD, 25));
             title.setForeground(Color.white);
@@ -41,12 +40,13 @@ public class hiScoresPanel extends JPanel
                 int scoreList;
                 listEntry e = start.hsl.get(i);
                 scoreList = e.score;
-                JLabel score = new JLabel(place + ". " + scoreList);
+                JLabel score = new JLabel(place + ". " + start.hsl.get(i).name + " " + scoreList);
                 add(score);
                 score.setFont(new Font("Arial", Font.BOLD, 25));
                 score.setForeground(Color.white);
                 score.setBounds(190, bound, 300, 50);
             }}
+            
 
 
         }

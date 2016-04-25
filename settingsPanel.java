@@ -86,6 +86,10 @@ public class settingsPanel extends JPanel implements ChangeListener
     }
     
     public String getName() {
+        if(Objects.equals(null, firstName))
+            firstName = "John";
+        if(Objects.equals(null, lastName))
+            lastName = "Doe";
         String fullName = firstName + " " + lastName;
         return(fullName);
     }
