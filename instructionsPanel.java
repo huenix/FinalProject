@@ -42,7 +42,8 @@ public class instructionsPanel extends JPanel
             
              /*This code creates the label that asks how to play game. Sets the text color to white.
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
-            JLabel howTo2 = new JLabel("- Move the arrows on your keyboard to move and combine game pieces");
+            JLabel howTo2 = new JLabel("- Move the arrows on your keyboard to move and combine game pieces with like numbers");
+           
             howTo2.setFont(new Font("Arial", Font.BOLD, 15));
             howTo2.setForeground (Color.white);
             howTo2.setBounds(35,105,600,25);
@@ -60,7 +61,7 @@ public class instructionsPanel extends JPanel
             
             /*This code creates the label that asks how to play game. Sets the text color to white.
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
-            JLabel saveGame2 = new JLabel("- The save button is located in the menu bar");
+            JLabel saveGame2 = new JLabel("- The save button is located in the menu bar under 'File');
             saveGame2.setFont(new Font("Arial", Font.BOLD, 15));
             saveGame2.setForeground (Color.white);
             saveGame2.setBounds(35,170,600,25);
@@ -80,7 +81,7 @@ public class instructionsPanel extends JPanel
             
             /*This code creates the label that asks how to play game. Sets the text color to white.
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
-            JLabel loadGame2 = new JLabel("- Click the 'load button' in the menu bar");
+            JLabel loadGame2 = new JLabel("- Click the 'load button' in the menu bar under 'File'");
             loadGame2.setFont(new Font("Arial", Font.BOLD,15));
             loadGame2.setForeground (Color.white);
             loadGame2.setBounds(35,235,600,25);
@@ -101,7 +102,7 @@ public class instructionsPanel extends JPanel
             
             /*This code creates the label that asks how to play game.Sets the text color to white.
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
-            JLabel resetGame2 = new JLabel("- Of course! Click 'reset' in the menu bar");
+            JLabel resetGame2 = new JLabel("- Of course! Click 'reset' at the top of the game");
             resetGame2.setFont(new Font("Arial", Font.BOLD,15));
             resetGame2.setForeground (Color.white);
             resetGame2.setBounds(35,300,600,25);
