@@ -61,7 +61,7 @@ public class instructionsPanel extends JPanel
             
             /*This code creates the label that asks how to play game. Sets the text color to white.
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
-            JLabel saveGame2 = new JLabel("- The save button is located in the menu bar under 'File');
+            JLabel saveGame2 = new JLabel("- The save button is located in the menu bar under 'File'");
             saveGame2.setFont(new Font("Arial", Font.BOLD, 15));
             saveGame2.setForeground (Color.white);
             saveGame2.setBounds(35,170,600,25);
