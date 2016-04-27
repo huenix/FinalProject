@@ -58,10 +58,17 @@ public class GamePiece extends JButton{
 		switch(currState){
 			default: 
 				break;
+			case -1:
+				this.setIcon(null);
+				this.setBackground(Color.green);
+				this.setText("YOU LOST");
+				this.setFont(new Font("Arial", Font.BOLD, 20));
+				break;
 			case 0:
 				this.setIcon(null);
 				this.setBackground(Color.white);
 				this.setText(null);
+				this.setFont(new Font("Arial", Font.BOLD, 40));
 				break;
 			case 1:
 				a = new ImageIcon(getClass().getClassLoader().getResource("pics/beaverstadium3.jpg"));

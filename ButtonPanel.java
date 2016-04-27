@@ -229,12 +229,22 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				count++;
 			}
 			else{
-				reset();
+				youLost();
 				randomIndex = -1;
 			}
 
 		}
 	}
+
+		public void youLost(){
+
+			for(GamePiece g : buttons){
+				g.setState(-1);
+			}
+
+		}
+
+
         public String getGameBoard()
         {
             //Going through the ArrayList and creating a 16 character string to account for 

@@ -1,4 +1,3 @@
-package fp;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -42,7 +41,7 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
 			score_panel.setScore(0);
 		}
                 if (e.getSource() == gameTimer) {                    
-                    System.out.println("Timer Ticked in panel ");
+                    
                     button_panel.addRandomTile();
                     gameTimer.restart();
                 }
