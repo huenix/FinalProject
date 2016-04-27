@@ -1,3 +1,5 @@
+package fp;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,16 +20,18 @@ import javax.swing.event.*;
 
 
 
-public class settingsPanel extends JPanel implements ChangeListener
+public class settingsPanel extends JPanel implements ActionListener
 {
-    JTextField fn, ln, ispeed, jt1,jt2, jt3;
+    JTextField rn, un;
+    
+    JLabel labelRealName, labelUserName, labelSpeedSlider;
     JButton settingsButton;
     JSlider setSpeed;
     
-    String firstName;
-    String lastName;
+    String realName;
+    String userName;
     
-    float speed;
+    int speed = 1;
     
     int next = 0;
     public settingsPanel(){
@@ -49,25 +53,23 @@ public class settingsPanel extends JPanel implements ChangeListener
 
 
 // Add fields for the user
-        fn = new JTextField("Real Name", 10);
-        fn.setEditable(false);
-        add(fn);
-
-        jt1 = new JTextField(firstName, 30);
-        jt1.setEditable(true);
-        add(jt1);
+        labelRealName = new JLabel("Real Name");
+        add(labelRealName);
+        rn = new JTextField(realName, 30);
+        rn.setEditable(true);
+        rn.addActionListener(this);
+        add(rn);
         
-        ln = new JTextField("User Name", 10);
-        ln.setEditable(true);
-        add(ln);
-
-        jt2 = new JTextField(lastName, 30);
-        jt2.setEditable(true);
-        add(jt2);
+        labelUserName = new JLabel("User Name");
+        add(labelUserName);
+        
+        un = new JTextField(userName, 30);
+        un.setEditable(true);
+        un.addActionListener(this);
+        add(un);
                 
-        ispeed = new JTextField("Initial Speed", 10);
-        ispeed.setEditable(false);
-        add(ispeed);
+        labelSpeedSlider = new JLabel("Initial Speed");
+        
         
         setSpeed = new JSlider(JSlider.HORIZONTAL,1,3,1);
         setSpeed.setBorder(BorderFactory.createTitledBorder("Initial Speed"));
@@ -79,30 +81,41 @@ public class settingsPanel extends JPanel implements ChangeListener
         
         
         
-        settingsButton = new JButton("Play Game");
+        settingsButton = new JButton("Save Settings");
+        settingsButton.addActionListener(this);
+        
         add(settingsButton);
         
 
     }
     
     public String getName() {
-        if(Objects.equals(null, firstName))
-            firstName = "John";
-        if(Objects.equals(null, lastName))
-            lastName = "Doe";
-        String fullName = firstName + " " + lastName;
-        return(fullName);
+        if(Objects.equals(null, realName))
+            realName = "John Doe";
+        
+        return(realName);
+    }
+    public String getUserName() {
+        if (Objects.equals(null, userName))
+            userName = "Random Player";
+        
+        return(userName);
     }
     public float getSpeed() {
         return(speed);
     
     }
-    public void stateChanged(ChangeEvent e) {
+    public void actionPerformed(ActionEvent e) {
         // linewidth taken from the slider
-    
-        speed = setSpeed.getValue();
-         // This sets the currWidth
-        System.out.println("Setting speed  to " + speed);
+        Object obj = e.getSource();
+        if (obj == settingsButton) {
+            realName = rn.getText();
+            userName = un.getText();
+            speed = setSpeed.getValue();
+            System.out.println("Settings Saved: " + realName + " " + userName + " " + speed);
+            
+        }
+        
 
     }
 }

@@ -1,3 +1,5 @@
+package fp;
+
 
 import java.awt.*;
 import java.awt.event.*;
@@ -152,17 +154,23 @@ public class cardPanel extends JPanel implements ActionListener {
 				gp.button_panel.setGameBoard(b);
 
 			} else if (whichMenu.equals("Intro Screen")){
+                                gp.stopTimer();
 				cardLayout.show(this, "INTRO");
 			} else if (whichMenu.equals("Instructions")){
+                                gp.stopTimer();
 				cardLayout.show(this, "INSTRUCTIONS");
 			} else if (whichMenu.equals("About")){
+                                gp.stopTimer();
 				cardLayout.show(this, "DESIGNER");
 			} else if (whichMenu.equals("Game Screen")){
+                                gp.startTimer();
 				cardLayout.show(this, "GAMEPLAY");
 			} else if (whichMenu.equals("Hi Scores")){
+                                gp.stopTimer();
                                 this.add(buildHiScoresPanel(this),"SCORES");
                             	cardLayout.show(this, "SCORES");
 			} else if (whichMenu.equals("Settings")){
+                                gp.stopTimer();
 				cardLayout.show(this, "SETTINGS");
 			}
 		}
@@ -170,18 +178,23 @@ public class cardPanel extends JPanel implements ActionListener {
 			JButton a = (JButton) e.getSource();
 			CardLayout cardLayout = (CardLayout) this.getLayout();
 			if(a.getText().equals("Play Game")){
+                                gp.startTimer();
 				cardLayout.show(this, "GAMEPLAY");	
 			}
 			else if(a.getText().equals("START HERE")){
+                                gp.stopTimer();
 				cardLayout.show(this, "SETTINGS");	
 			}
 			else if(a.getText().equals("Instructions")){
+                                gp.stopTimer();
 				cardLayout.show(this, "INSTRUCTIONS");	
 			}
 			else if(a.getText().equals("Game Designers")){
+                                gp.stopTimer();
 				cardLayout.show(this, "DESIGNER");	
 			}
 			else if(a.getText().equals("Hi Scores")){
+                            gp.stopTimer();
                             this.add(buildHiScoresPanel(this),"SCORES");
 				cardLayout.show(this, "SCORES");	
 			}
