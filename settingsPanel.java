@@ -79,7 +79,7 @@ public class settingsPanel extends JPanel implements ActionListener
         
         
         
-        settingsButton = new JButton("Save Settings");
+        settingsButton = new JButton("Play Game");
         settingsButton.addActionListener(this);
         
         add(settingsButton);

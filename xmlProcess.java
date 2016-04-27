@@ -55,7 +55,7 @@ public class xmlProcess
             System.out.println(hsl.get(i).name);
             x.writeObject(hsl.get(i).score);
             System.out.println(hsl.get(i).score);
-            x.writeObject(hsl.get(i).gameBoard);
+            x.writeObject(gb);
         }
         x.closeWriterXML();
     }

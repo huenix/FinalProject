@@ -124,7 +124,9 @@ public class cardPanel extends JPanel implements ActionListener {
 
 	public JPanel buildSettingsPanel(){
 		
-		return new settingsPanel();
+		settingsPanel s = new settingsPanel();
+		s.settingsButton.addActionListener(this);
+		return s;
 		
 	}
 
