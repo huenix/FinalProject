@@ -59,21 +59,25 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
 			case KeyEvent.VK_UP:
 			if(button_panel.actuateUp())
 				button_panel.addRandomTile();
+                                gameTimer.restart();
 			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_DOWN:
 			if(button_panel.actuateDown())
 				button_panel.addRandomTile();
+                                gameTimer.restart();
 			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_LEFT:
 			if(button_panel.actuateLeft())
 				button_panel.addRandomTile();
+                                gameTimer.restart();
 			score_panel.setScore(button_panel.score);
 			break;
 			case KeyEvent.VK_RIGHT:
 			if(button_panel.actuateRight())
 				button_panel.addRandomTile();
+                                gameTimer.restart();
 			score_panel.setScore(button_panel.score);
 			break;
 			default:
@@ -97,6 +101,11 @@ public class gameplayPanel extends JPanel implements KeyListener, ActionListener
         gameTimer.setDelay(4000);
     }
     public void startTimer(){
+        gameTimer.start();
+    }
+    public void startTimer(int d) {
+        gameTimer.setDelay(d);
+        System.out.println("Started timer with delay " + d);
         gameTimer.start();
     }
     public void stopTimer() {

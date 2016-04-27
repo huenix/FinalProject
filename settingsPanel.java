@@ -71,7 +71,7 @@ public class settingsPanel extends JPanel implements ActionListener
         labelSpeedSlider = new JLabel("Initial Speed");
         
         
-        setSpeed = new JSlider(JSlider.HORIZONTAL,1,3,1);
+        setSpeed = new JSlider(JSlider.HORIZONTAL,1,4,1);
         setSpeed.setBorder(BorderFactory.createTitledBorder("Initial Speed"));
         setSpeed.setMajorTickSpacing(1);
         setSpeed.setPaintTicks(true);
@@ -111,7 +111,7 @@ public class settingsPanel extends JPanel implements ActionListener
         if (obj == settingsButton) {
             realName = rn.getText();
             userName = un.getText();
-            speed = setSpeed.getValue();
+            speed = setSpeed.getValue() * 1000;
             System.out.println("Settings Saved: " + realName + " " + userName + " " + speed);
             
         }

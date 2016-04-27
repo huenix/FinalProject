@@ -163,7 +163,7 @@ public class cardPanel extends JPanel implements ActionListener {
                                 gp.stopTimer();
 				cardLayout.show(this, "DESIGNER");
 			} else if (whichMenu.equals("Game Screen")){
-                                gp.startTimer();
+                                gp.startTimer(s.speed);
 				cardLayout.show(this, "GAMEPLAY");
 			} else if (whichMenu.equals("Hi Scores")){
                                 gp.stopTimer();
