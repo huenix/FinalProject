@@ -102,7 +102,9 @@ public class instructionsPanel extends JPanel
             resetGame2.setBounds(35,300,600,25);
             add(resetGame2);
 
-
+	    /*Creates a back button for users to go back to main screen.
+	    Sets location with the set bounds.
+	    adds it to the instructions panel*/
             backButton = new JButton("<- Back..");
             backButton.setBounds(270, 370, 100, 25);
             add(backButton);
