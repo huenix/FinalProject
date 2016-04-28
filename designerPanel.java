@@ -13,7 +13,10 @@ public class designerPanel extends JPanel
 	public designerPanel()
 	{
             super();
+            
+            //sets background of panel to blue
             setBackground(Color.BLUE);
+            //sets layout to null so we can place things wherever we specify
             setLayout(null);
              /*This code creates the label that displays our class information. Sets the text color to white.
             It also sets the font to Arial, bold size 25 and sets location and adds it*/
