@@ -113,22 +113,30 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		return neighbors;
 	}
 
+
+	// Method that gets called when up arrow is 
+	// pressed within the gameplay window
 	public boolean actuateUp(){
-		boolean goOn = false;
+		boolean goOn = false; // Lets us know if we made any changes during actuation
+		// Loop through each button in button grid
+		// Starting from the top left position, going down first , then across
 		for(int c = 0; c < COLS; c++){
 			for(int r = 0; r < ROWS; r++){
 				int thisIndex = r*COLS + c;
 				int thisState = buttons.get(thisIndex).getState();
 				buttons.get(thisIndex).setState(0);
-				int []myNeighbors = getNeighbors(thisIndex);
+				int []myNeighbors = getNeighbors(thisIndex); // Find neighbors for current position
+				// Check to see if neighbor is a blank space
 				while(isBlankSpace(myNeighbors[NORTH])){
 					thisIndex -= COLS;
 					myNeighbors = getNeighbors(thisIndex);
 					goOn = true;
 				}
-				//myNeighbors = getNeighbors(thisIndex);
+				// Then move this button to the furthest position
 				buttons.get(thisIndex).setState(thisState);
 
+				// Check if the neighbor against it has the same state value
+				// as itself, and if so merge the two into a larger state.
 				if(myNeighbors[NORTH] != -1 && buttons.get(myNeighbors[NORTH]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[NORTH]).setState(thisState+1);
@@ -140,23 +148,31 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 
 			}
 		}
-		return goOn;
+		return goOn; // Returning this bool tells our parent function if we actuated
 	}
 
+	// Method that gets called when down arrow is 
+	// pressed within the gameplay window
 	public boolean actuateDown(){
 		boolean goOn = false;
+		// Loop through each button in button grid
+		// Starting from the bottom left position, going up first , then across
 		for(int c = 0; c < COLS; c++){
 			for(int r = ROWS-1; r >= 0; r--){
 				int thisIndex = r*COLS + c;
 				int thisState = buttons.get(thisIndex).getState();
 				buttons.get(thisIndex).setState(0);
-				int []myNeighbors = getNeighbors(thisIndex);
+				int []myNeighbors = getNeighbors(thisIndex);// Find neighbors for current position
+				// Check to see if neighbor is a blank space
 				while(isBlankSpace(myNeighbors[SOUTH])){
 					thisIndex += COLS;
 					myNeighbors = getNeighbors(thisIndex);
 					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
+
+				// Check if the neighbor against it has the same state value
+				// as itself, and if so merge the two into a larger state.
 				if(myNeighbors[SOUTH] != -1 && buttons.get(myNeighbors[SOUTH]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[SOUTH]).setState(thisState+1);
@@ -167,12 +183,14 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				}
 			}
 		}
-		return goOn;
+		return goOn; // Returning this bool tells our parent function if we actuated
 	}
 
 
 	public boolean actuateRight(){
 		boolean goOn = false;
+		// Loop through each button in button grid
+		// Starting from the top right position, going across first, then down
 		for(int r = 0; r < ROWS; r++){
 			for(int c = ROWS-1; c >= 0; c--){
 				int thisIndex = r*COLS + c;
@@ -185,6 +203,9 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
+
+				// Check if the neighbor against it has the same state value
+				// as itself, and if so merge the two into a larger state.
 				if(myNeighbors[EAST] != -1 && buttons.get(myNeighbors[EAST]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[EAST]).setState(thisState+1);
@@ -195,11 +216,13 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				}
 			}
 		}
-		return goOn;
+		return goOn; // Returning this bool tells our parent function if we actuated
 	}
 
 	public boolean actuateLeft(){
 		boolean goOn = false;
+		// Loop through each button in button grid
+		// Starting from the top left position, going down first, then across
 		for(int r = 0; r < ROWS; r++){
 			for(int c = 0; c < COLS; c++){
 				int thisIndex = r*COLS + c;
@@ -212,6 +235,9 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 					goOn = true;
 				}
 				buttons.get(thisIndex).setState(thisState);
+
+				// Check if the neighbor against it has the same state value
+				// as itself, and if so merge the two into a larger state.
 				if(myNeighbors[WEST] != -1 && buttons.get(myNeighbors[WEST]).getState() == thisState){
 					buttons.get(thisIndex).setState(0);
 					buttons.get(myNeighbors[WEST]).setState(thisState+1);
@@ -222,10 +248,12 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 				}
 			}
 		}
-		return goOn;
+		return goOn; // Returning this bool tells our parent function if we actuated
 	}
 
 
+	// Check to see if a button at a given index
+	// Is a blank space, as represented by state 0
 	public boolean isBlankSpace(int buttonIndex){
 		if(buttonIndex < 0 || buttonIndex > buttons.size()-1)
 			return false;
@@ -233,20 +261,29 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		return (buttons.get(buttonIndex).getState() == 0);
 	}
 
+	// Method that adds a random tile to the button grid
+	// in either the first or second states, choosing from the
+	// area of blank spaces
 	public void addRandomTile(){
+		// Determine parity of random tile
 		int two_or_four = (int) Math.floor(Math.random() * 2) + 1;
 		int randomIndex = 0;
-		int count = 0;
+		int count = 0; 	// Keep number of attempts so you dont 
+						// loop infinitely looking for a slot
+		// While index hasn't yet been found
 		while(randomIndex != -1){
+			// Look for a random index
 			randomIndex = (int) Math.floor(Math.random() * ROWS * COLS);
+			// Check its blank-ness
 			if(isBlankSpace(randomIndex)){
 				buttons.get(randomIndex).setState(two_or_four);
 				randomIndex = -1;
 			}
-
+			// If we're still in range of our grid, we're still playing
 			if(count < ROWS * COLS){
 				count++;
 			}
+			// Otherwise user has lost because there is no more space
 			else{
 				youLost();
 				randomIndex = -1;
@@ -255,19 +292,20 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 	}
 
+	// Method to set game state for losing buttons
 	public void youLost(){
 
 		for(GamePiece g : buttons){
 			g.setState(-1);
 		}
-			// a
+			
 	}
 
 
 	public String getGameBoard()
 	{
-            //Going through the ArrayList and creating a 16 character string to account for 
-            //each of the values of the board pieces, and writing it to an XML file
+        //Going through the ArrayList and creating a 16 character string to account for 
+        //each of the values of the board pieces, and writing it to an XML file
 		StringBuilder StrBld = new StringBuilder();
 		String gameBoard;
 		for (GamePiece g : buttons){
@@ -285,8 +323,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 
 	public void setGameBoard(String gb)
 	{
-           //Grab the 16 character string from the XML file, for each character
-           //convert to numeric value to assign to buttons ArrayList state.
+       //Grab the 16 character string from the XML file, for each character
+       //convert to numeric value to assign to buttons ArrayList state.
 		int chnum;
 		char a = 'A';
 		char b = 'B';
@@ -303,7 +341,5 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			
 		}
 	}
-
-	
 }
 
