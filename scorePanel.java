@@ -9,10 +9,11 @@ public class scorePanel extends JPanel {
 	// Initialize components and variables
 	// that will be used in the panel
 	int score;
+	String name;
 	JLabel scoreLabel;
+	JLabel nameLabel;
 	JButton startButton;
 	JButton resetButton;
-	JSlider delaySlider;
 
 	// Constructor that configures scorePanel
 	public scorePanel(){	
@@ -21,24 +22,18 @@ public class scorePanel extends JPanel {
 
 		// Instantiate new variables
 		score = 0;
+		name = "John Doe";
 		scoreLabel = new JLabel("Score: " + score);
+		nameLabel = new JLabel("Name: " + name);
 		startButton = new JButton("START");
 		resetButton = new JButton("RESET");
 
-		// Instantiate the slider such that it will range
-		// from -100 to 100 and have major tick marks on every multiple
-		// of 25
-		delaySlider = new JSlider(JSlider.HORIZONTAL, 100, 2000, 1000);
-	    delaySlider.setBorder(BorderFactory.createTitledBorder("Delay"));
-    	delaySlider.setMajorTickSpacing(500);
-    	delaySlider.setPaintTicks(true);
-   		delaySlider.setPaintLabels(true);
 
 		// Add components to panel
 		this.add(scoreLabel);
+		this.add(nameLabel);
 		this.add(startButton);
 		this.add(resetButton);
-		this.add(delaySlider);
 	}
 
 	// Method that sets score label to new score
@@ -50,5 +45,17 @@ public class scorePanel extends JPanel {
 	// Accessor method for current score
 	public int getScore(){
 		return score;
+	}
+
+	// Method that sets name label to new name
+	public void setName(String newName){
+		name = newName;
+		nameLabel.setText("Name: " + name);
+		System.out.println(newName);
+	}
+
+	// Accessor method for current name
+	public String getName(){
+		return name;
 	}
 }

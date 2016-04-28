@@ -27,7 +27,6 @@ public class settingsPanel extends JPanel implements ActionListener
     JSlider setSpeed;
     
     String realName;
-    String userName;
     
     int speed = 1;
     
@@ -35,13 +34,11 @@ public class settingsPanel extends JPanel implements ActionListener
     public settingsPanel(){
         
         super();
-        JPanel panel = new JPanel();
-        BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
-        panel.setLayout(layout);
-        panel.setBounds(10,10,10,10);
-        //panel.setLayout(layout);
+        
+        setLayout(new GridLayout(0,1));
+        
         setBackground(Color.BLUE);
-        //setLayout(null);
+        
 
         JLabel title = new JLabel("Game Settings");
         title.setFont(new Font("Arial", Font.BOLD, 75));
@@ -51,20 +48,12 @@ public class settingsPanel extends JPanel implements ActionListener
 
 
 // Add fields for the user
-        labelRealName = new JLabel("Real Name");
+        labelRealName = new JLabel("Name");
         add(labelRealName);
         rn = new JTextField(realName, 30);
         rn.setEditable(true);
         rn.addActionListener(this);
         add(rn);
-        
-        labelUserName = new JLabel("User Name");
-        add(labelUserName);
-        
-        un = new JTextField(userName, 30);
-        un.setEditable(true);
-        un.addActionListener(this);
-        add(un);
                 
         labelSpeedSlider = new JLabel("Initial Speed");
         
@@ -88,17 +77,13 @@ public class settingsPanel extends JPanel implements ActionListener
     }
     
     public String getName() {
-        if(Objects.equals(null, realName))
+        if(Objects.equals(null, rn.getText()))
             realName = "John Doe";
-        
+        else 
+            realName = rn.getText();
         return(realName);
     }
-    public String getUserName() {
-        if (Objects.equals(null, userName))
-            userName = "Random Player";
-        
-        return(userName);
-    }
+  
     public float getSpeed() {
         return(speed);
     
@@ -108,9 +93,8 @@ public class settingsPanel extends JPanel implements ActionListener
         Object obj = e.getSource();
         if (obj == settingsButton) {
             realName = rn.getText();
-            userName = un.getText();
             speed = setSpeed.getValue() * 1000;
-            System.out.println("Settings Saved: " + realName + " " + userName + " " + speed);
+            System.out.println("Settings Saved: " + realName + " " + speed);
             
         }
         

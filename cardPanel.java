@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class cardPanel extends JPanel implements ActionListener {
 	
 	public gameplayPanel gp;
-        public settingsPanel s;
+    public settingsPanel s;
 
 	// Constructor for card panel 
 	// This builds and adds the cards to
@@ -179,6 +179,7 @@ public class cardPanel extends JPanel implements ActionListener {
 			CardLayout cardLayout = (CardLayout) this.getLayout();
 			if(a.getText().equals("Play Game")){
                                 gp.startTimer();
+                                gp.score_panel.setName(s.getName());
 				cardLayout.show(this, "GAMEPLAY");	
 			}
 			else if(a.getText().equals("START HERE")){
