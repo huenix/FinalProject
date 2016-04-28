@@ -24,7 +24,9 @@ public class scorePanel extends JPanel {
 		score = 0;
 		name = "John Doe";
 		scoreLabel = new JLabel("Score: " + score);
+		scoreLabel.setForeground(Color.white);
 		nameLabel = new JLabel("Name: " + name);
+		nameLabel.setForeground(Color.white);
 		startButton = new JButton("START");
 		resetButton = new JButton("RESET");
 

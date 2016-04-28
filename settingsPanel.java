@@ -20,7 +20,7 @@ import javax.swing.event.*;
 
 public class settingsPanel extends JPanel implements ActionListener
 {
-    JTextField rn, un;
+    JTextField rn;
     
     JLabel labelRealName, labelUserName, labelSpeedSlider;
     JButton settingsButton;
@@ -35,12 +35,13 @@ public class settingsPanel extends JPanel implements ActionListener
         
         super();
         
-        setLayout(new GridLayout(0,1));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         setBackground(Color.BLUE);
         
 
         JLabel title = new JLabel("Game Settings");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Arial", Font.BOLD, 75));
         title.setForeground(Color.white);
         //title.setBounds(190,-50,300,200);
@@ -49,8 +50,12 @@ public class settingsPanel extends JPanel implements ActionListener
 
 // Add fields for the user
         labelRealName = new JLabel("Name");
+        labelRealName.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelRealName.setForeground(Color.white);
         add(labelRealName);
         rn = new JTextField(realName, 30);
+        rn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rn.setMaximumSize( rn.getPreferredSize() );
         rn.setEditable(true);
         rn.addActionListener(this);
         add(rn);
@@ -64,11 +69,15 @@ public class settingsPanel extends JPanel implements ActionListener
         setSpeed.setPaintTicks(true);
         setSpeed.setPaintLabels(true);
         setSpeed.setLabelTable(setSpeed.createStandardLabels(1));
+        setSpeed.setMaximumSize( setSpeed.getPreferredSize() );
+        setSpeed.setAlignmentX(Component.CENTER_ALIGNMENT);
+        setSpeed.setForeground(Color.white);
         add(setSpeed);
         
         
         
         settingsButton = new JButton("Play Game");
+        settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         settingsButton.addActionListener(this);
         
         add(settingsButton);
@@ -93,7 +102,9 @@ public class settingsPanel extends JPanel implements ActionListener
         Object obj = e.getSource();
         if (obj == settingsButton) {
             realName = rn.getText();
-            speed = setSpeed.getValue() * 1000;        
+            speed = setSpeed.getValue() * 1000;
+            System.out.println("Settings Saved: " + realName + " " + speed);
+            
         }
         
 

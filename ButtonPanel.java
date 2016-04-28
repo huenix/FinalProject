@@ -9,7 +9,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 	
 	private final int ROWS = 4;
 	private final int COLS = 4;
-	private final int PAD = 3;
+	private final int PAD = 4;
 
 	private final int NORTH = 0;
 	private final int WEST = 1;
@@ -35,14 +35,13 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			this.add(a);
 		}
 		reset();
-		//buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
 	}
 
 	public void reset(){
 		for(GamePiece g : buttons){
 			g.setState(0);
 		}
-		//buttons.get((int) Math.floor(Math.random() * ROWS * COLS)).setState(1);
+		
 		this.score = 0;
 		addRandomTile();
 		addRandomTile();
@@ -241,13 +240,7 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			for(GamePiece g : buttons){
 				g.setState(-1);
 			}
-			// try{
-				
-			// 	reset();
-			// }
-			// catch(InterruptedException e){
-			// 	e.printStackTrace();
-			// }
+			// a
 		}
 
 

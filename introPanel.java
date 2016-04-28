@@ -16,7 +16,7 @@ public class introPanel extends JPanel {
 		this.setBackground(Color.orange);
 		this.setLayout(new GridLayout(0, 1));
 
-		titleLabel = new JLabel("IST GAME NAME");
+		titleLabel = new JLabel("PSU48");
 		titleLabel.setFont(new Font("Arial", Font.BOLD,48));
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		playButton = new JButton("START HERE");
