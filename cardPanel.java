@@ -117,6 +117,7 @@ public class cardPanel extends JPanel implements ActionListener {
 	public JPanel buildGamePanel(){
 		gameplayPanel gp = new gameplayPanel();
 		gp.score_panel.resetButton.addActionListener(this);
+		gp.score_panel.startButton.addActionListener(this);
 		return gp;
 	}
 
@@ -166,7 +167,7 @@ public class cardPanel extends JPanel implements ActionListener {
                                 gp.stopTimer();
 				cardLayout.show(this, "DESIGNER");
 			} else if (whichMenu.equals("Game Screen")){
-                                gp.startTimer(s.speed);
+                                //gp.startTimer(s.speed);
 				cardLayout.show(this, "GAMEPLAY");
 			} else if (whichMenu.equals("Hi Scores")){
                                 gp.stopTimer();
@@ -181,7 +182,7 @@ public class cardPanel extends JPanel implements ActionListener {
 			JButton a = (JButton) e.getSource();
 			CardLayout cardLayout = (CardLayout) this.getLayout();
 			if(a.getText().equals("Play Game")){
-                                gp.startTimer();
+                                //gp.startTimer();
                                 gp.score_panel.setName(s.getName());
 				cardLayout.show(this, "GAMEPLAY");	
 			}
@@ -209,6 +210,14 @@ public class cardPanel extends JPanel implements ActionListener {
 			else if(a.getText().equals("<- Back..")){
                                 gp.stopTimer();
 				cardLayout.show(this, "INTRO");	
+			}
+			else if(a.getText().equals("START")){
+                                gp.startTimer();
+                                a.setText("PAUSE");
+			}
+			else if(a.getText().equals("PAUSE")){
+                                gp.stopTimer();
+                                a.setText("START");
 			}
 		}
 	}

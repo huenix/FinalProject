@@ -235,55 +235,55 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 	}
 
-		public void youLost(){
+	public void youLost(){
 
-			for(GamePiece g : buttons){
-				g.setState(-1);
-			}
-			// a
+		for(GamePiece g : buttons){
+			g.setState(-1);
 		}
+			// a
+	}
 
 
-        public String getGameBoard()
-        {
+	public String getGameBoard()
+	{
             //Going through the ArrayList and creating a 16 character string to account for 
             //each of the values of the board pieces, and writing it to an XML file
-            StringBuilder StrBld = new StringBuilder();
-            String gameBoard;
-            for (GamePiece g : buttons){
-                if(g.getState()== 10)
-                    StrBld.append("A");
-                else if(g.getState()==11)
-                    StrBld.append("B");
-                else
-                    StrBld.append(g.getState());
-            }
-            gameBoard = StrBld.toString();
-            return gameBoard;
-                
-        }
+		StringBuilder StrBld = new StringBuilder();
+		String gameBoard;
+		for (GamePiece g : buttons){
+			if(g.getState()== 10)
+				StrBld.append("A");
+			else if(g.getState()==11)
+				StrBld.append("B");
+			else
+				StrBld.append(g.getState());
+		}
+		gameBoard = StrBld.toString();
+		return gameBoard;
+		
+	}
 
-        public void setGameBoard(String gb)
-        {
+	public void setGameBoard(String gb)
+	{
            //Grab the 16 character string from the XML file, for each character
            //convert to numeric value to assign to buttons ArrayList state.
-            int chnum;
-            char a = 'A';
-            char b = 'B';
-            for(int i = 0; i < gb.length(); i++){
-                char ch = gb.charAt(i);
-                if(ch == a)
-                    chnum = 10;
-                else if(ch == b)
-                     chnum = 11;
-                else
-                chnum = Character.getNumericValue(ch);
-                System.out.println(chnum);
-                buttons.get(i).setState(chnum);
-                
-            }
-        }
+		int chnum;
+		char a = 'A';
+		char b = 'B';
+		for(int i = 0; i < gb.length(); i++){
+			char ch = gb.charAt(i);
+			if(ch == a)
+				chnum = 10;
+			else if(ch == b)
+				chnum = 11;
+			else
+				chnum = Character.getNumericValue(ch);
+			System.out.println(chnum);
+			buttons.get(i).setState(chnum);
+			
+		}
+	}
 
-            
-            }
+	
+}
 
