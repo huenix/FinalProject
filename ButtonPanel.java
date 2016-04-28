@@ -7,36 +7,43 @@ import java.util.Set;
 
 public class ButtonPanel extends JPanel {//implements KeyListener{
 	
-	private final int ROWS = 4;
-	private final int COLS = 4;
-	private final int PAD = 4;
+	private final int ROWS = 4;  // Number of Rows in Game Board
+	private final int COLS = 4;  // Number of Columns in Game Board
+	private final int PAD = 4;   // Number of pixels padding each grid item
 
-	private final int NORTH = 0;
+	// Constants for directionality
+	private final int NORTH = 0; 
 	private final int WEST = 1;
 	private final int EAST = 2;
 	private final int SOUTH = 3;
 
+	// ArrayList of GamePiece Buttons that will be played with
 	public ArrayList<GamePiece> buttons;
-	int score;
+	int score;  // Score of this given panel
 	
-
+	// Constructor of the Button Panel
 	public ButtonPanel()
 	{   
 		super();
-		this.score = 0;
+		this.score = 0;  // Set starting score to 0
 		this.setBackground(Color.orange);
 		buttons = new ArrayList<>();
+		// Define the GridLayout
 		this.setLayout(new GridLayout(ROWS, COLS, PAD, PAD));
+		// Instantiate the Game Buttons and add them into the 
+		// button grid
 		for(int x = 0; x < ROWS* COLS; x++){
 			GamePiece a = new GamePiece();
-			//a.addKeyListener(this);
-			a.setText("" + x);
 			buttons.add(a);
 			this.add(a);
 		}
+		// Then call reset to get Board ready to play
 		reset();
 	}
 
+
+	// Reset method sets all buttons to state 0
+	// resets the score to 0, and also adds two random tiles
 	public void reset(){
 		for(GamePiece g : buttons){
 			g.setState(0);
@@ -47,7 +54,12 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		addRandomTile();
 	}
 
+
+	// Method that maps linear ArrayList indices to Button Grid Positions
+	// And returns an integer array of indices of each buttonIndex's neighbors
 	public int [] getNeighbors(int buttonIndex){
+
+		// There are no neighbors for false buttons
 		if(buttonIndex < 0 || buttonIndex > buttons.size()-1){
 			System.out.println("Trying to show neighbors for a dead button: " + buttonIndex);
 			int[] noNeighbors = {-1, -1, -1, -1};
@@ -55,10 +67,12 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			return noNeighbors;
 		}
 
-		//System.out.println("---NEIGHBORS FOR: " + buttonIndex);
+		// Create the array to hold the neighbors
 		int[] neighbors = new int[4];
 		
-		// Check for out of bounds on top 
+		// Check for out of bounds on top
+		// If one button up (-COLS positions away linearly) exists
+		// set that as north neighbor
 		if (buttonIndex - COLS >= 0 ){
 			neighbors[0] = buttonIndex-COLS;
 		}
@@ -67,6 +81,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 
 		// Check for out of bounds on left
+		// If one button left (-1 positions away linearly) exists
+		// set that as west neighbor
 		if(buttonIndex % COLS - 1 >= 0){
 			neighbors[1] = buttonIndex-1;
 		}
@@ -75,6 +91,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 		
 		// Check for out of bounds on right 
+		// If one button right (+1 positions away linearly) exists
+		// set that as east neighbor
 		if(buttonIndex % COLS + 1 < COLS){
 			neighbors[2] = buttonIndex + 1;
 		}
@@ -83,6 +101,8 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 		}
 
 		// Check for out of bounds on bottom
+		// If one button down (+COLS positions away linearly) exists
+		// set that as southneighbor
 		if (buttonIndex + COLS < ROWS * COLS ){
 			neighbors[3] = buttonIndex+COLS;
 		}
