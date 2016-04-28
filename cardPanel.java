@@ -102,7 +102,9 @@ public class cardPanel extends JPanel implements ActionListener {
 	
 	// Function to create the Instructions panel
 	public JPanel buildInstructionsPanel(Container container){
-		return new instructionsPanel();
+		instructionsPanel i = new instructionsPanel();
+		i.backButton.addActionListener(this);
+		return i;
 	}
 
 	// Function to create the Designer panel
@@ -203,6 +205,10 @@ public class cardPanel extends JPanel implements ActionListener {
 			else if(a.getText().equals("RESET")){
 				xmlProcess close = new xmlProcess();
 				close.xmlClose(s.getName(),gp.score_panel.getScore(),gp.button_panel.getGameBoard());
+			}
+			else if(a.getText().equals("<- Back..")){
+                                gp.stopTimer();
+				cardLayout.show(this, "INTRO");	
 			}
 		}
 	}

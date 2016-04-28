@@ -15,7 +15,7 @@ import java.awt.event.*;
 
 public class instructionsPanel extends JPanel 
 {
- 
+      JButton backButton;
 	public instructionsPanel()
 	{
             super();
@@ -44,7 +44,7 @@ public class instructionsPanel extends JPanel
             It also sets the font to Arial, bold size 15 and sets location and adds it*/
             JLabel howTo2 = new JLabel("- Move the arrows on your keyboard to move and combine game pieces with like numbers");
            
-            howTo2.setFont(new Font("Arial", Font.BOLD, 15));
+            howTo2.setFont(new Font("Arial", Font.BOLD, 13));
             howTo2.setForeground (Color.white);
             howTo2.setBounds(35,105,600,25);
             add(howTo2);
@@ -107,6 +107,11 @@ public class instructionsPanel extends JPanel
             resetGame2.setForeground (Color.white);
             resetGame2.setBounds(35,300,600,25);
             add(resetGame2);
+
+
+            backButton = new JButton("<- Back..");
+            backButton.setBounds(270, 370, 100, 25);
+            add(backButton);
          
 	}
         
