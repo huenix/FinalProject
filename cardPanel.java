@@ -1,9 +1,15 @@
-
+/**
+ *
+ * @author dstrivelli
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 
+// This class represents a JPanel Container that 
+// Is viewed "one screen at a time" via cards
+// Each Card is a Panel with its own class
 public class cardPanel extends JPanel implements ActionListener {
 	
 	public gameplayPanel gp;
@@ -13,8 +19,6 @@ public class cardPanel extends JPanel implements ActionListener {
 	// This builds and adds the cards to
 	// the container, which is managed by the 
 	// CardLayout layout manager. 
-	
-
 	public cardPanel(JFrame f){
 
 		// Call the JPanel super constructor

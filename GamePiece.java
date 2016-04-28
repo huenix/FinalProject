@@ -1,3 +1,7 @@
+/**
+ *
+ * @author dstrivelli
+ */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -6,27 +10,36 @@ import javax.imageio.*;
 import java.util.ArrayList;
 import java.io.*;
 
+// Class that represents a button within the
+// gameplay button grid for the game
 public class GamePiece extends JButton{
 
+	// Properties include:
 	public int currState;
 	public int value;
 	
+	// Constructing the GamePiece
 	public GamePiece(){
 		super();
 
-		setState(0);
-		value = 0;
-		setText("" + value);
+		setState(0); // Set initial state to 0
+		value = 0; // Set value to 0
+		setText("" + value); // Set text to 0
+		// Place text centered horizontally and vertically
 		this.setHorizontalTextPosition(JButton.CENTER);
 		this.setVerticalTextPosition(JButton.CENTER);
+
+		// Set text font to 40PT and RED
 		this.setForeground(Color.RED);
 		this.setFont(new Font("Arial", Font.BOLD, 40));
 
+		// Change visual properties of the buttons
 		setBorderPainted( false );
 		setFocusPainted( false );
 		setOpaque(true);
 	}
 
+	// Create a game piece in a specified state (doesn't get used)
 	public GamePiece(int currState){
 		super();
 		this.currState = currState;
@@ -34,6 +47,7 @@ public class GamePiece extends JButton{
 		setText("" + value);
 	}
 
+	// Given a path to an image, load that image (helps with loading files while packed in JAR)
 	public Image getImage(String imagePath){
 		try {
 			return ImageIO.read(getClass().getClassLoader().getResource(imagePath));
@@ -43,16 +57,22 @@ public class GamePiece extends JButton{
 		}
 	}
 
+	// Meat and Potatoes Function
+	// Method sets the given button to a discrete state
+	// which will by-effect change the text and image of the button
 	public void setState(int currState){
 		this.currState = currState;
-		this.value = (int) Math.pow(2, currState);
+		this.value = (int) Math.pow(2, currState); // Text is state's power of 2
 		this.setText("" + value);
+		// Initial button sizes
 		int bWidth = 157;
 		int bHeight = 85;
+		// Resize buttons to preferred size
 		if(this.getWidth() * this.getHeight() > 0){
 			bWidth = this.getWidth();
 			bHeight = this.getHeight();
 		}
+		// Sets the image and background color of each state
 		Image img = null;
 		ImageIcon a = null;
 		switch(currState){
@@ -141,7 +161,7 @@ public class GamePiece extends JButton{
 	}
 
 	
-
+	// Returns the current state of the button
 	public int getState(){
 		return currState;
 	}
