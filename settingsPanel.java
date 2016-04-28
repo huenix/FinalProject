@@ -93,9 +93,7 @@ public class settingsPanel extends JPanel implements ActionListener
         Object obj = e.getSource();
         if (obj == settingsButton) {
             realName = rn.getText();
-            speed = setSpeed.getValue() * 1000;
-            System.out.println("Settings Saved: " + realName + " " + speed);
-            
+            speed = setSpeed.getValue() * 1000;        
         }
         
 

@@ -241,13 +241,13 @@ public class ButtonPanel extends JPanel {//implements KeyListener{
 			for(GamePiece g : buttons){
 				g.setState(-1);
 			}
-			try{
-				Thread.sleep(3000);
-			}
-			catch(InterruptedException e){
-				e.printStackTrace();
-			}
-			reset();
+			// try{
+				
+			// 	reset();
+			// }
+			// catch(InterruptedException e){
+			// 	e.printStackTrace();
+			// }
 		}
 
 

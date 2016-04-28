@@ -113,8 +113,9 @@ public class cardPanel extends JPanel implements ActionListener {
 
 	// Function to build Gameplay panel 
 	public JPanel buildGamePanel(){
-
-		return new gameplayPanel();
+		gameplayPanel gp = new gameplayPanel();
+		gp.score_panel.resetButton.addActionListener(this);
+		return gp;
 	}
 
         //Function to build hi scores panel
@@ -198,6 +199,10 @@ public class cardPanel extends JPanel implements ActionListener {
                             gp.stopTimer();
                             this.add(buildHiScoresPanel(this),"SCORES");
 				cardLayout.show(this, "SCORES");	
+			}
+			else if(a.getText().equals("RESET")){
+				xmlProcess close = new xmlProcess();
+				close.xmlClose(s.getName(),gp.score_panel.getScore(),gp.button_panel.getGameBoard());
 			}
 		}
 	}
