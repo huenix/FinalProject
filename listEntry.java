@@ -17,14 +17,19 @@ public class listEntry {
     
     public listEntry(String n, int s, String gb)
     {
-        name = n;
-        score = s;
-        gameBoard = gb;
+     //Constructor used to create individual records in the final arraylist
+        name = n;  //sets name in listentry record
+        score = s;  //sets score in listentry record
+        gameBoard = gb;  //sets gameboard in listentry record
     }
+   
         public static Comparator<listEntry> scoreComp = new Comparator<listEntry>()
     {
-        public int compare(listEntry e1, listEntry e2)
+        
+        public int compare(listEntry e1, listEntry e2)  //sets up to compare hi scores to help sort
+       
         {
+            //Sorts the entires based on hi score
             return e2.score-e1.score;
         }
     };
