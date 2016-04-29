@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_25" class="java.beans.XMLDecoder">
+ <string>Billy BOB</string>
+ <int>284</int>
+ <string>0000202024003210</string>
+ <string>Hyena</string>
+ <int>112</int>
+ <string>0000202024003210</string>
+ <string>Billy BOB</string>
+ <int>80</int>
+ <string>0000202024003210</string>
  <string>John Doe</string>
  <int>64</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
  <string>Jimbo</string>
  <int>48</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
+ <string>linda</string>
+ <int>48</int>
+ <string>0000202024003210</string>
  <string>Gerald</string>
  <int>40</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
  <string>John Doe</string>
  <int>16</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
  <string>John Doe</string>
  <int>16</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
  <string>John Doe</string>
  <int>16</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
- <string>John Doe</string>
- <int>12</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
- <string>Jimbo</string>
- <int>8</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
- <string>John</string>
- <int>0</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
- <string>John</string>
- <int>0</int>
- <string>-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1-1</string>
+ <string>0000202024003210</string>
 </java>
